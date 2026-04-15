@@ -1,4 +1,4 @@
-# Progetto Lego
+# Progetto Sito Web Lego
 
 ## Descrizione del Progetto
 Questo progetto riguarda la creazione di un sito web dedicato al mondo dei Lego. Il sito presenterà una vasta gamma di prodotti Lego, insieme alle sue storie interessanti.
