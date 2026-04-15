@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Aggiungi un nuovo Lego</h2>
+
+<form method="post">
+    Nome: <input type="text" name="name"><br>
+    Descrizione: <textarea name="description"></textarea><br>
+    URL Immagine: <input type="text" name="image"><br>
+    <button type="submit">Salva</button>
+</form>
+
+{% endblock %}
