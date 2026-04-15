@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Collezione Lego</h2>
+
+{% for lego in legos %}
+    <div>
+        <h3>{{ lego['name'] }}</h3>
+        <p>{{ lego['description'] }}</p>
+        {% if lego['image'] %}
+            <img src="{{ lego['image'] }}" width="200">
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}
