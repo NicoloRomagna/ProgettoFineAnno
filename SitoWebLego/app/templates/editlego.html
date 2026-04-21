@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block title %}Modifica Set LEGO - La Mia Collezione LEGO{% endblock %}
+
+{% block content %}
+<h2> Modifica Set LEGO</h2>
+
+<div style="max-width: 900px; margin: 30px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+    
+    <!-- Preview della immagine -->
+    <div>
+        <h3 style="margin-bottom: 15px; color: #667eea;">Anteprima</h3>
+        {% if lego.image %}
+            <img id="imagePreview" src="/{{ lego.image }}" alt="{{ lego.name }}" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        {% else %}
+            <div id="imagePreview" style="width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Form di modifica -->
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            <style>
+                .form-group {
+                    margin-bottom: 20px;
+                }
+                
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: #333;
+                    font-weight: 600;
+                }
+                
+                input[type="text"],
+                input[type="number"],
+                textarea,
+                input[type="file"] {
+                    width: 100%;
+                    padding: 12px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 5px;
+                    font-family: inherit;
+                    font-size: 16px;
+                    transition: border-color 0.3s ease;
+                }
+                
+                input[type="text"]:focus,
+                input[type="number"]:focus,
+                textarea:focus,
+                input[type="file"]:focus {
+                    outline: none;
+                    border-color: #667eea;
+                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                }
+                
+                textarea {
+                    resize: vertical;
+                    min-height: 100px;
+                }
+                
+                .btn-row {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                    margin-top: 30px;
+                }
+                
+                button, .btn-link {
+                    padding: 12px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .btn-save {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                }
+                
+                .btn-save:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+                }
+                
+                .btn-cancel {
+                    background: #e0e0e0;
+                    color: #333;
+                }
+                
+                .btn-cancel:hover {
+                    background: #ccc;
+                }
+            </style>
+
+            <div class="form-group">
+                <label for="name">Nome del Set</label>
+                <input type="text" id="name" name="name" value="{{ lego.name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="set_number">Numero Set</label>
+                <input type="text" id="set_number" name="set_number" value="{{ lego.set_number }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pieces">Numero di Pezzi</label>
+                <input type="number" id="pieces" name="pieces" value="{{ lego.pieces or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="year">Anno di Uscita</label>
+                <input type="number" id="year" name="year" value="{{ lego.year or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrizione</label>
+                <textarea id="description" name="description">{{ lego.description or '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image_file">Cambia Immagine</label>
+                <input type="file" id="image_file" name="image_file" accept="image/*" onchange="previewImage(event)">
+                <small style="display: block; color: #999; margin-top: 8px;">Lascia vuoto per mantenere l'immagine attuale</small>
+            </div>
+
+            <div class="form-group">
+                <label for="image_url">URL Immagine</label>
+                <input type="text" id="image_url" name="image_url" value="{{ lego.image if lego.image and lego.image.startswith('http') else '' }}" placeholder="https://example.com/immagine.jpg">
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" class="btn-save"> Salva Modifiche</button>
+                <a href="/" class="btn-cancel">← Torna al Dashboard</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function previewImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').innerHTML = '';
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.cssText = 'width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);';
+            document.getElementById('imagePreview').appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+{% endblock %}
