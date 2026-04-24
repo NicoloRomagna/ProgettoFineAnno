@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Dashboard</h2>
+
+    <p>Benvenuto, {{ current_user.username }}</p>
+
+    <a href="{{ url_for('main.aggiungi_lego') }}" class="btn btn-primary mb-3">
+        Aggiungi Lego
+    </a>
+
+    <table class="table table-striped table-hover align-middle">
+
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Set</th>
+                <th>Pezzi</th>
+                <th>Anno</th>
+                <th>Immagine</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for lego in legos %}
+            <tr>
+
+                <td>
+                    {% if lego.image %}
+                        <img src="{{ lego.image }}"
+                             width="80"
+                             class="rounded"
+                             onerror="this.src='https://via.placeholder.com/80?text=No'">
+                    {% else %}
+                        <img src="https://via.placeholder.com/80?text=No"
+                             width="80"
+                             class="rounded">
+                    {% endif %}
+                </td>
+
+                <td><strong>{{ lego.name }}</strong></td>
+
+                <td>{{ lego.set_number }}</td>
+
+                <td>{{ lego.pieces }}</td>
+
+                <td>{{ lego.year }}</td>
+
+                <td>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="{{ url_for('main.edit_lego', id=lego.id) }}"
+                           class="btn green_button btn-sm">
+                            Modifica
+                        </a>
+
+                        <form action="{{ url_for('main.delete_lego', id=lego.id) }}"
+                              method="POST"
+                              onsubmit="return confirm('Sei sicuro di voler eliminare questo LEGO?');">
+
+                            <button class="btn red_button btn-sm">
+                                Elimina
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary mt-3">
+        Logout
+    </a>
+
+</div>
+
+{% endblock %}
