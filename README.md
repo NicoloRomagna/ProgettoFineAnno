@@ -21,7 +21,7 @@ Questo progetto consiste nello sviluppo di un sito web dedicato al mondo dei LEG
 ### Contenuti aggiuntivi
 #### Sezione Storia LEGO
 - Racconto delle origini dell’azienda
-- Evoluzione dei prodotti nel corso del tempo (Legno --> Plastica)
+- Evoluzione dei prodotti e materiali nel corso del tempo
 
 #### Tutorial
 - Video dimostrativi
