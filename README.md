@@ -5,42 +5,43 @@ Questo progetto consiste nello sviluppo di un sito web dedicato al mondo dei LEG
 
 ### Funzionalità principali
 #### Autenticazione Utente
-Registrazione
-Accesso (Login)
+- Registrazione
+- Accesso (Login)
 
 #### Gestione Set LEGO
-Possibilità di aggiungere nuovi Set LEGO
-Possibilità di eliminare i Set già esistenti
+- Possibilità di aggiungere nuovi Set LEGO
+- Possibilità di eliminare i Set già esistenti
 
 #### Catalogo e acquisto singoli pezzi
-Catalogo dedicato ai singoli mattoncini
-Disponibilità di diversi colori, minifigures e botanica
-Ricerca dei pezzi specifici 
-Selezione dei componenti per l'acquisto
+- Catalogo dedicato ai singoli mattoncini
+- Disponibilità di diversi colori, minifigures e botanica
+- Ricerca dei pezzi specifici 
+- Selezione dei componenti per l'acquisto
 
 ### Contenuti aggiuntivi
 #### Sezione Storia LEGO
-Racconto delle origini dell’azienda
-Evoluzione dei prodotti nel corso del tempo (Legno --> Plastica)
+- Racconto delle origini dell’azienda
+- Evoluzione dei prodotti nel corso del tempo (Legno --> Plastica)
 
 #### Tutorial
-Video dimostrativi e immagini utili per guidare la costruire di diversi modelli LEGO
+- Video dimostrativi
+- Immagini utili per guidare la costruire di diversi modelli LEGO
 
 ### Tecnologie Utilizzate
-Backend: Flask
-Frontend: HTML, CSS
-Database: SQLite
+- Backend: Flask
+- Frontend: HTML, CSS
+- Database: SQLite
 
 ### Installazione e Avvio
 #### 1. Clonare il repository:
-git clone https://github.com/tuo-username/lego-website.git
+- git clone https://github.com/tuo-username/lego-website.git
 #### 2. Entrare nella cartella del progetto:
-SitoWebLego
+- cd SitoWebLego
 #### 3. Installare le dipendenze:
-pip install flask
-pip install -r requirements.txt
+- pip install flask
+- pip install -r requirements.txt
 #### 4. Avviare l’applicazione:
-python setup_db.py (database)
-python run.py
+- python setup_db.py (database)
+- python run.py
 #### 5. Apri il browser e vai su:
-http://127.0.0.1:5000/
+- http://127.0.0.1:5000/
