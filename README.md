@@ -46,5 +46,5 @@ Questo progetto consiste nello sviluppo di un sito web dedicato al mondo dei LEG
 #### 5. Apri il browser e vai su:
 - http://127.0.0.1:5000/
 
-###### Autore
+##### Autore
 Nicolò R.
