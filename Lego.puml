@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor Utente
+actor Amministratore
+
+rectangle "Sistema Sito Web LEGO" {
+
+  package "Autenticazione" {
+    (Registrazione) as UC1
+    (Login) as UC2
+    (Logout) as UC3
+  }
+
+  package "Catalogo Set LEGO" {
+    (Visualizza Catalogo Set LEGO) as UC4
+    (Aggiungi Set LEGO) as UC5
+    (Elimina Set LEGO) as UC6
+    (Modifica Set LEGO) as UC7
+  }
+
+  package "Catalogo Pezzi e Acquisto" {
+    (Visualizza Catalogo Pezzi) as UC8
+    (Ricerca Pezzo) as UC9
+    (Filtra per Colore) as UC10
+    (Seleziona Componenti) as UC11
+    (Acquista Pezzi) as UC12
+  }
+
+  package "Contenuti e Tutorial" {
+    (Visualizza Storia LEGO) as UC13
+    (Guarda Video Tutorial) as UC14
+    (Visualizza Immagini Costruzione) as UC15
+  }
+}
+
+Utente --> UC1
+Utente --> UC2
+Utente --> UC3
+
+Utente --> UC4
+Utente --> UC8
+Utente --> UC9
+Utente --> UC10
+Utente --> UC11
+Utente --> UC12
+Utente --> UC13
+Utente --> UC14
+Utente --> UC15
+
+Amministratore --> UC2
+Amministratore --> UC3
+
+Amministratore --> UC4
+Amministratore --> UC5
+Amministratore --> UC6
+Amministratore --> UC7
+
+@enduml
