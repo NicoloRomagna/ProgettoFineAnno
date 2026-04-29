@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4" style="text-align:center;">
+    Set LEGO di colore: {{ colore|capitalize }}
+</h2>
+
+<style>
+.lego-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.lego-card {
+    background: #f2f2f2;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+
+.lego-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.lego-card p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.prezzo {
+    font-size: 14px;
+    color: #444;
+    margin-top: 5px;
+}
+
+.lego-card:hover {
+    transform: scale(1.05);
+    background: #e6e6e6;
+}
+</style>
+
+<div class="lego-grid">
+
+    {% for lego in legos %}
+    <a class="lego-card" href="{{ url_for('main.edit_lego', id=lego.id) }}">
+        <img src="{{ lego.image }}" alt="{{ lego.name }}">
+        <p>{{ lego.name }}</p>
+
+        {% if lego.price %}
+        <p class="prezzo">€ {{ lego.price }}</p>
+        {% endif %}
+    </a>
+    {% endfor %}
+
+    {% if legos|length == 0 %}
+        <p style="grid-column: 1 / -1; text-align:center; font-size:18px;">
+            Nessun set trovato per questo colore.
+        </p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

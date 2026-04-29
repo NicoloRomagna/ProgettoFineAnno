@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="dashboard-title">Dashboard</h1>
+
+        <a href="{{ url_for('main.aggiungi_lego') }}" class="add_lego text-decoration-none">
+            + Aggiungi Lego
+        </a>
+    </div>
+
+    <p>Benvenuto, {{ current_user.username }}</p>
+
+    <table class="table table-lego">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Set</th>
+                <th>Pezzi</th>
+                <th>Anno</th>
+                <th>Descrizione</th>
+                <th>Prezzo (€)</th>
+                <th>Minifigure</th>
+                <th>Immagine</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for lego in legos %}
+            <tr>
+
+                <td><strong>{{ lego.name }}</strong></td>
+
+                <td>{{ lego.set_number }}</td>
+
+                <td>{{ lego.pieces }}</td>
+
+                <td>{{ lego.year }}</td>
+
+                <td>{{ lego.description }}</td>
+
+                <td>
+                    {% if lego.price %}
+                        € {{ "%.2f"|format(lego.price) }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if lego.is_minifigure %}
+                        <span class="badge-minifigure">Minifigure</span>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if lego.image %}
+                        <img src="{{ lego.image }}"
+                             width="90"
+                             class="rounded"
+                             onerror="this.src='https://via.placeholder.com/90?text=No'">
+                    {% else %}
+                        <img src="https://via.placeholder.com/90?text=No"
+                             width="90"
+                             class="rounded">
+                    {% endif %}
+                </td>
+
+                <td>
+                    <div class="d-flex gap-2">
+
+                        <a href="{{ url_for('main.edit_lego', id=lego.id) }}"
+                           class="btn-edit">
+                            Modifica
+                        </a>
+
+                        <form action="{{ url_for('main.delete_lego', id=lego.id) }}"
+                              method="POST"
+                              onsubmit="return confirm('Sei sicuro di voler eliminare questo LEGO?');">
+
+                            <button class="btn-delete">
+                                Elimina
+                            </button>
+
+                        </form>
+
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary mt-3">
+        Logout
+    </a>
+
+</div>
+
+{% endblock %}

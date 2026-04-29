@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4" style="text-align:center;">Botanical Collection</h2>
+
+<div class="lego-grid">
+
+    {% for lego in legos %}
+    <a class="lego-card" href="{{ url_for('main.edit_lego', id=lego.id) }}">
+        <img src="{{ lego.image }}" alt="{{ lego.name }}">
+        <p>{{ lego.name }}</p>
+
+        {% if lego.price %}
+        <p class="prezzo">€ {{ lego.price }}</p>
+        {% endif %}
+    </a>
+    {% endfor %}
+
+    {% if legos|length == 0 %}
+        <p style="grid-column: 1 / -1; text-align:center; font-size:18px;">
+            Nessun set botanico trovato.
+        </p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

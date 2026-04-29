@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center">Minifigures</h2>
+
+<div style="max-width:400px; margin:20px auto; text-align:center;">
+    <img src="{{ url_for('static', filename='img/minifigures.png') }}"
+         alt="minifigures"
+         style="width:100%; border-radius:10px;">
+
+    <p style="font-size:20px; margin-top:15px; font-weight:bold;">
+        Prezzo base: €{{ prezzo }}
+    </p>
+</div>
+
+<h3 style="text-align:center;">Le tue Minifigures</h3>
+
+<div style="max-width:600px; margin:0 auto;">
+    {% if minifigs %}
+        {% for lego in minifigs %}
+            <div style="margin-bottom:20px; border-bottom:1px solid #ccc; padding-bottom:10px;">
+                <strong>{{ lego.name }}</strong> – € {{ lego.price }}<br>
+                <img src="{{ lego.image }}" style="width:100px; margin-top:5px;">
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center;">Nessuna Minifigure trovata</p>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Aggiungi Set LEGO{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Aggiungi un Nuovo Set LEGO</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% set category, message = messages[-1] %}
+    <div class="alert alert-{{ category }} mt-3" style="font-size: 14px;">
+      {{ message }}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+    <div class="alert alert-info mt-3" style="font-size: 14px;">
+        ➜ I campi con <b>*</b> sono obbligatori
+    </div>
+
+    <form method="post">
+
+        <div class="form-group">
+            <label>Nome Set *</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Numero Set *</label>
+            <input type="text" name="set_number" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Pezzi</label>
+            <input type="number" name="pieces" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Anno</label>
+            <input type="number" name="year" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Descrizione</label>
+            <textarea name="description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Prezzo (€)</label>
+            <input type="number" step="0.01" name="price" class="form-control">
+        </div>
+
+        <div class="form-group mt-3">
+            <label>
+                <input type="checkbox" name="is_minifigure" value="1">
+                È una minifigure?
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Immagine</label>
+            <input type="text" name="image_url" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">
+            Aggiungi LEGO
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

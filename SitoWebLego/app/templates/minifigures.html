@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Minifigure{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Le Tue Minifigure</h2>
+
+    {% if minifigs|length == 0 %}
+        <div class="alert alert-warning mt-3">
+            Nessuna minifigure presente nella tua collezione.
+        </div>
+    {% else %}
+
+        <div class="row mt-4">
+
+            {% for m in minifigs %}
+            <div class="col-md-4 mb-4">
+                <a href="{{ url_for('main.edit_lego', id=m.id) }}" style="text-decoration:none; color:inherit;">
+                    <div class="card">
+
+                        {% if m.image %}
+                            <img src="{{ m.image }}" class="card-img-top">
+                        {% else %}
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/LEGO_minifigure_placeholder.png" class="card-img-top">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ m.name }}</h5>
+                            <p class="card-text">Set: {{ m.set_number }}</p>
+
+                            <span class="badge-minifigure">Minifigure</span>
+
+                            {% if m.price %}
+                            <p class="card-text mt-2">Prezzo: €{{ m.price }}</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

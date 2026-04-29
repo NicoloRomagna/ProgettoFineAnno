@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - La Mia Collezione LEGO{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 60px auto;">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <div style="font-size: 64px; margin-bottom: 20px;"></div>
+        <h1 style="color: #5370f1; margin-bottom: 10px;">Bentornato</h1>
+        <p style="color: #989898;">Accedi alla tua collezione LEGO</p>
+    </div>
+
+    <form method="post">
+        <style>
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            label {
+                display: block;
+                margin-bottom: 8px;
+                color: #333;
+                font-weight: 600;
+            }
+            
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #e0e0e0;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: border-color 0.3s ease;
+            }
+            
+            input[type="text"]:focus,
+            input[type="password"]:focus {
+                outline: none;
+                border-color: #5370f1;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+            
+            button {
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(135deg,#5370f1 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+        </style>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Inserisci il tuo username">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Inserisci la tua password">
+        </div>
+
+        <button type="submit">Accedi</button>
+    </form>
+
+    <div style="text-align: center; margin-top: 25px; color: #989898;">
+        Non hai un account? <a href="/register" style="color: #5571f0; text-decoration: none; font-weight: 600;">Registrati ora</a>
+    </div>
+</div>
+{% endblock %}

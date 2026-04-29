@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center; margin-top:20px;">Botanica</h2>
+
+<div style="max-width:400px; margin:20px auto; text-align:center;">
+    <img src="{{ url_for('static', filename='img/botanica.png') }}"
+         alt="botanica"
+         style="width:100%; border-radius:10px;">
+
+    <p style="font-size:20px; margin-top:15px; font-weight:bold;">
+        Prezzo base: €{{ prezzo }}
+    </p>
+</div>
+
+<h3 style="text-align:center;">Pezzi Botanici</h3>
+
+<div style="max-width:600px; margin:0 auto;">
+    {% if botanica %}
+        {% for lego in botanica %}
+            <div style="margin-bottom:20px; border-bottom:1px solid #ccc; padding-bottom:10px;">
+                <strong>{{ lego.name }}</strong> – € {{ lego.price }}<br>
+                <img src="{{ lego.image }}" style="width:100px; margin-top:5px;">
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center;">Nessun pezzo botanico trovato</p>
+    {% endif %}
+</div>
+
+{% endblock %}
